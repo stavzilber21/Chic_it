@@ -13,10 +13,32 @@
         android:theme="@style/Theme.Chic_it_app"
         tools:targetApi="31">
         <activity
+            android:name=".PostActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".CreatingcontentActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".UserActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
             android:name=".StartActivity"
             android:exported="true">
-<!--            android:name=".MainActivity"-->
-<!--            android:exported="false">-->
+
+            <!-- android:name=".MainActivity" -->
+            <!-- android:exported="false"> -->
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
@@ -40,8 +62,7 @@
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
-        </activity>
-<!--        <activity android:name=".MainActivity" />-->
+        </activity> <!-- <activity android:name=".MainActivity" /> -->
         <activity
             android:name=".LoginActivity"
             android:exported="false">

@@ -21,11 +21,10 @@ public class StartActivity extends AppCompatActivity {
         super.onStart();
 
         firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
-        System.out.println(firebaseUser.getEmail());
-//        if (firebaseUser != null) {
-//            startActivity(new Intent(StartActivity.this, MainActivity.class));
-//            finish();
-//        }
+        if (FirebaseAuth.getInstance().getCurrentUser() != null){
+            startActivity(new Intent(StartActivity.this , MainActivity.class));
+            finish();
+        }
     }
 
     @Override
