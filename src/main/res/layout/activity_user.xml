@@ -4,13 +4,23 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".UserActivity">
 
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/fragment_container"
-        android:layout_above="@id/bottom"/>
+        android:layout_above="@id/bottom">
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="400dp"
+            android:layout_height="318dp"
+            android:text="משתמשים הינם אנשים שבאים לקחת השראה ומעוניינים לחפש באפליקציה לוקים המתאימים להם"
+            android:textColor="@color/colorPrimary"
+            android:textSize="30sp"
+            android:textStyle="bold" />
+    </FrameLayout>
 
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
@@ -25,8 +35,7 @@
             app:itemIconTint="@color/selector"
             app:labelVisibilityMode="unlabeled"
             android:background="?android:attr/windowBackground"
-            app:menu="@menu/bottom_menu"/>
-
+            app:menu="@menu/user_menu"/>
 
     </com.google.android.material.appbar.AppBarLayout>
 

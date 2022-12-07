@@ -4,19 +4,30 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".CreatingcontentActivity">
 
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/fragment_container"
-        android:layout_above="@id/bottom"/>
+        android:layout_above="@id/bottom">
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="400dp"
+            android:layout_height="318dp"
+            android:text="יוצר תוכן הינו תפקיד של העלאת תוכן תוך נתינת השראה לאחרים. ניתן לאנשים ובעלי עסקים המעוניינים להעלות את פרטיהם ולשתף את הציבור"
+            android:textColor="@color/colorPrimary"
+            android:textSize="30sp"
+            android:textStyle="bold" />
+    </FrameLayout>
 
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/bottom"
         android:layout_alignParentBottom="true">
+
 
         <com.google.android.material.bottomnavigation.BottomNavigationView
             android:id="@+id/bottom_navigation"
@@ -25,7 +36,7 @@
             android:background="?android:attr/windowBackground"
             app:itemIconTint="@color/selector"
             app:labelVisibilityMode="unlabeled"
-            app:menu="@menu/bottom_menu" />
+            app:menu="@menu/creatingcontent_menu" />
 
 
     </com.google.android.material.appbar.AppBarLayout>
