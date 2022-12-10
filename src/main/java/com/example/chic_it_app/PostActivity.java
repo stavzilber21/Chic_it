@@ -36,6 +36,8 @@ public class PostActivity extends AppCompatActivity {
     ProgressDialog progressDialog;
     String imageUrl;
     EditText description;
+    EditText store;
+    EditText price;
     TextView post;
 
     @Override
@@ -46,6 +48,9 @@ public class PostActivity extends AppCompatActivity {
         imageAdded = findViewById(R.id.image_added);
         post = findViewById(R.id.post);
         description = findViewById(R.id.description);
+        store = findViewById(R.id.store);
+        price = findViewById(R.id.price);
+
 
         close.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -103,6 +108,8 @@ public class PostActivity extends AppCompatActivity {
                     map.put("postid" , postId);
                     map.put("imageurl" , imageUrl);
                     map.put("description" , description.getText().toString());
+                    map.put("store" , store.getText().toString());
+                    map.put("price" , price.getText().toString());
 //                    map.put("publisher" , FirebaseAuth.getInstance().getCurrentUser().getUid());
 
                     ref.child(postId).setValue(map);

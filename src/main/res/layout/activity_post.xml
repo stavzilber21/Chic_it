@@ -67,6 +67,22 @@
             android:maxLines="5"
             android:id="@+id/description" />
 
+        <EditText
+            android:id="@+id/store"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:hint="store"
+            android:maxLines="5" />
+
+        <EditText
+            android:id="@+id/price"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:hint="price"
+            android:maxLines="5" />
+
     </LinearLayout>
 
 </LinearLayout>
