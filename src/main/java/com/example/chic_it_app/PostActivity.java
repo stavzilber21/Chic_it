@@ -110,7 +110,7 @@ public class PostActivity extends AppCompatActivity {
                     map.put("description" , description.getText().toString());
                     map.put("store" , store.getText().toString());
                     map.put("price" , price.getText().toString());
-//                    map.put("publisher" , FirebaseAuth.getInstance().getCurrentUser().getUid());
+                    map.put("publisher" , FirebaseAuth.getInstance().getCurrentUser().getUid());
 
                     ref.child(postId).setValue(map);
 
