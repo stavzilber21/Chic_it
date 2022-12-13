@@ -56,11 +56,11 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.Viewholder> {
         Picasso.get().load(post.getImageurl()).into(holder.postImage);
         holder.description.setText(post.getDescription());
 
-        FirebaseDatabase.getInstance().getReference().child("Posts").child(post.getDescription()).addValueEventListener(new ValueEventListener() {
+        FirebaseDatabase.getInstance().getReference().child("Users").child(post.getDescription()).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 //                User user = dataSnapshot.getValue(User.class);
-
+//
 //                if (user.getImageurl()!= null && user.getImageurl().equals("default")) {
 //                    holder.imageProfile.setImageResource(R.mipmap.ic_launcher);
 //                } else {
@@ -76,22 +76,23 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.Viewholder> {
             }
         });
 
+        isLiked(post.getPostid(), holder.like);
+//        noOfLikes(post.getPostid(), holder.noOfLikes);
 
+        holder.like.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (holder.like.getTag().equals("like")) {
+                    FirebaseDatabase.getInstance().getReference().child("Likes")
+                            .child(post.getPostid()).child(firebaseUser.getUid()).setValue(true);
 
-//        holder.like.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                if (holder.like.getTag().equals("like")) {
-//                    FirebaseDatabase.getInstance().getReference().child("Likes")
-//                            .child(post.getPostid()).child(firebaseUser.getUid()).setValue(true);
-//
-//                    addNotification(post.getPostid(), post.getPublisher());
-//                } else {
-//                    FirebaseDatabase.getInstance().getReference().child("Likes")
-//                            .child(post.getPostid()).child(firebaseUser.getUid()).removeValue();
-//                }
-//            }
-//        });
+                    addNotification(post.getPostid(), post.getPublisher());
+                } else {
+                    FirebaseDatabase.getInstance().getReference().child("Likes")
+                            .child(post.getPostid()).child(firebaseUser.getUid()).removeValue();
+                }
+            }
+        });
 
 //        holder.comment.setOnClickListener(new View.OnClickListener() {
 //            @Override
@@ -188,25 +189,25 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.Viewholder> {
 
     public class Viewholder extends RecyclerView.ViewHolder {
 
-        public ImageView imageProfile;
+//        public ImageView imageProfile;
         public ImageView postImage;
-//        public ImageView like;
+        public ImageView like;
 //        public ImageView comment;
 //        public ImageView save;
 //        public ImageView more;
 
         public TextView username;
-//        public TextView noOfLikes;
+        public TextView noOfLikes;
         public TextView author;
 //        public TextView noOfComments;
-        EditText description;
+        TextView description;
 
         public Viewholder(@NonNull View itemView) {
             super(itemView);
 
-            imageProfile = itemView.findViewById(R.id.image_profile);
+//            imageProfile = itemView.findViewById(R.id.image_profile);
             postImage = itemView.findViewById(R.id.post_image);
-//            like = itemView.findViewById(R.id.like);
+            like = itemView.findViewById(R.id.like);
 //            comment = itemView.findViewById(R.id.comment);
 //            save = itemView.findViewById(R.id.save);
 //            more = itemView.findViewById(R.id.more);
@@ -240,30 +241,34 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.Viewholder> {
 //        });
 //    }
 
-//    private void isLiked(String postId, final ImageView imageView) {
-//        FirebaseDatabase.getInstance().getReference().child("Likes").child(postId).addValueEventListener(new ValueEventListener() {
-//            @Override
-//            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-//                if (dataSnapshot.child(firebaseUser.getUid()).exists()) {
-//                    imageView.setImageResource(R.drawable.ic_liked);
-//                    imageView.setTag("liked");
-//                } else {
-//                    imageView.setImageResource(R.drawable.ic_like);
-//                    imageView.setTag("like");
-//                }
-//            }
-//
-//            @Override
-//            public void onCancelled(@NonNull DatabaseError databaseError) {
-//
-//            }
-//        });
-//    }
+    private void isLiked(String postId, final ImageView imageView) {
+        FirebaseDatabase.getInstance().getReference().child("Likes").child(postId).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                if (dataSnapshot.child(firebaseUser.getUid()).exists()) {
+                    imageView.setImageResource(R.drawable.ic_liked);
+                    imageView.setTag("liked");
+                } else {
+                    imageView.setImageResource(R.drawable.ic_like);
+                    imageView.setTag("like");
+                }
+            }
 
-//    private void noOfLikes (String postId, final TextView text) {
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+    }
+
+//    private void noOfLikes (String postId, TextView text) {
 //        FirebaseDatabase.getInstance().getReference().child("Likes").child(postId).addValueEventListener(new ValueEventListener() {
 //            @Override
 //            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+//                DataSnapshot x =dataSnapshot;
+//                System.out.println(x);
+//                long i = dataSnapshot.getChildrenCount();
+//                System.out.println(i);
 //                text.setText(dataSnapshot.getChildrenCount() + " likes");
 //            }
 //
