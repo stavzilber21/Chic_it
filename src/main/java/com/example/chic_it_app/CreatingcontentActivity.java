@@ -9,8 +9,6 @@ import android.os.Bundle;
 import android.view.MenuItem;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.example.chic_it_app.Fragments.HomeFragment;
-import com.example.chic_it_app.Fragments.NotificationFragment;
 import com.example.chic_it_app.Fragments.ProfileFragment;
 
 
@@ -38,9 +36,6 @@ public class CreatingcontentActivity extends AppCompatActivity {
                         startActivity(new Intent(CreatingcontentActivity.this , PostActivity.class));
                         break;
 
-                    case R.id.nav_heart :
-                        selectorFragment = new NotificationFragment();
-                        break;
 
                     case R.id.nav_profile :
                         selectorFragment = new ProfileFragment();

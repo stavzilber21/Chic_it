@@ -4,13 +4,11 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.example.chic_it_app.Fragments.HomeFragment;
-import com.example.chic_it_app.Fragments.NotificationFragment;
 import com.example.chic_it_app.Fragments.ProfileFragment;
 import com.example.chic_it_app.Fragments.SearchFragment;
 
@@ -38,10 +36,6 @@ public class UserActivity extends AppCompatActivity {
 
                     case R.id.nav_search :
                         selectorFragment = new SearchFragment();
-                        break;
-
-                    case R.id.nav_heart :
-                        selectorFragment = new NotificationFragment();
                         break;
 
                     case R.id.nav_profile :
