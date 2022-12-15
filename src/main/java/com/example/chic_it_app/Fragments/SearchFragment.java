@@ -104,31 +104,6 @@ public class SearchFragment extends Fragment {
     }
 
     private void searchPost (String s) {
-//        List<Post> postList = new ArrayList<>();
-//        for(Post post : mPosts){
-//            postList.add(post);
-//        }
-//        mPosts.clear();
-//        for(Post post : postList){
-//            if(post.getDescription().contains(s)){
-//                Query query = FirebaseDatabase.getInstance().getReference(post.getDescription());
-//                query.addValueEventListener(new ValueEventListener() {
-//                    @Override
-//                    public void onDataChange(@NonNull DataSnapshot snapshot) {
-//            for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
-//                Post posti = dataSnapshot.getValue(Post.class);
-//                mPosts.add(posti);
-//            }
-//            postAdapter.notifyDataSetChanged();
-//        }
-//
-//        @Override
-//        public void onCancelled(@NonNull DatabaseError error) {
-//
-//        }
-//    });
-
-
 
         Query query = FirebaseDatabase.getInstance().getReference().child("Posts")
                 .orderByChild("description").startAt(s).endAt(s + "\uf8ff");

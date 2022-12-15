@@ -75,24 +75,24 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.Viewholder> {
 
             }
         });
-
-        isLiked(post.getPostid(), holder.like);
+        isSaved(post.getPostid(), holder.save);
+//        isLiked(post.getPostid(), holder.like);
 //        noOfLikes(post.getPostid(), holder.noOfLikes);
 
-        holder.like.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (holder.like.getTag().equals("like")) {
-                    FirebaseDatabase.getInstance().getReference().child("Likes")
-                            .child(post.getPostid()).child(firebaseUser.getUid()).setValue(true);
-
-                    addNotification(post.getPostid(), post.getPublisher());
-                } else {
-                    FirebaseDatabase.getInstance().getReference().child("Likes")
-                            .child(post.getPostid()).child(firebaseUser.getUid()).removeValue();
-                }
-            }
-        });
+//        holder.like.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                if (holder.like.getTag().equals("like")) {
+//                    FirebaseDatabase.getInstance().getReference().child("Likes")
+//                            .child(post.getPostid()).child(firebaseUser.getUid()).setValue(true);
+//
+//                    addNotification(post.getPostid(), post.getPublisher());
+//                } else {
+//                    FirebaseDatabase.getInstance().getReference().child("Likes")
+//                            .child(post.getPostid()).child(firebaseUser.getUid()).removeValue();
+//                }
+//            }
+//        });
 
 //        holder.comment.setOnClickListener(new View.OnClickListener() {
 //            @Override
@@ -114,18 +114,18 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.Viewholder> {
 //            }
 //        });
 
-//        holder.save.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                if (holder.save.getTag().equals("save")) {
-//                    FirebaseDatabase.getInstance().getReference().child("Saves")
-//                            .child(firebaseUser.getUid()).child(post.getPostid()).setValue(true);
-//                } else {
-//                    FirebaseDatabase.getInstance().getReference().child("Saves")
-//                            .child(firebaseUser.getUid()).child(post.getPostid()).removeValue();
-//                }
-//            }
-//        });
+        holder.save.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (holder.save.getTag().equals("save")) {
+                    FirebaseDatabase.getInstance().getReference().child("Saves")
+                            .child(firebaseUser.getUid()).child(post.getPostid()).setValue(true);
+                } else {
+                    FirebaseDatabase.getInstance().getReference().child("Saves")
+                            .child(firebaseUser.getUid()).child(post.getPostid()).removeValue();
+                }
+            }
+        });
 
 //        holder.imageProfile.setOnClickListener(new View.OnClickListener() {
 //            @Override
@@ -189,17 +189,17 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.Viewholder> {
 
     public class Viewholder extends RecyclerView.ViewHolder {
 
-//        public ImageView imageProfile;
+        //        public ImageView imageProfile;
         public ImageView postImage;
-        public ImageView like;
+//        public ImageView like;
+        public ImageView save;
 //        public ImageView comment;
-//        public ImageView save;
 //        public ImageView more;
 
         public TextView username;
         public TextView noOfLikes;
         public TextView author;
-//        public TextView noOfComments;
+        //        public TextView noOfComments;
         TextView description;
 
         public Viewholder(@NonNull View itemView) {
@@ -207,9 +207,9 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.Viewholder> {
 
 //            imageProfile = itemView.findViewById(R.id.image_profile);
             postImage = itemView.findViewById(R.id.post_image);
-            like = itemView.findViewById(R.id.like);
+//            like = itemView.findViewById(R.id.like);
 //            comment = itemView.findViewById(R.id.comment);
-//            save = itemView.findViewById(R.id.save);
+            save = itemView.findViewById(R.id.save);
 //            more = itemView.findViewById(R.id.more);
 
             username = itemView.findViewById(R.id.username);
@@ -221,36 +221,16 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.Viewholder> {
         }
     }
 
-//    private void isSaved (final String postId, final ImageView image) {
-//        FirebaseDatabase.getInstance().getReference().child("Saves").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).addValueEventListener(new ValueEventListener() {
-//            @Override
-//            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-//                if (dataSnapshot.child(postId).exists()) {
-//                    image.setImageResource(R.drawable.ic_save_black);
-//                    image.setTag("saved");
-//                } else {
-//                    image.setImageResource(R.drawable.ic_save);
-//                    image.setTag("save");
-//                }
-//            }
-//
-//            @Override
-//            public void onCancelled(@NonNull DatabaseError databaseError) {
-//
-//            }
-//        });
-//    }
-
-    private void isLiked(String postId, final ImageView imageView) {
-        FirebaseDatabase.getInstance().getReference().child("Likes").child(postId).addValueEventListener(new ValueEventListener() {
+    private void isSaved (final String postId, final ImageView image) {
+        FirebaseDatabase.getInstance().getReference().child("Saves").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                if (dataSnapshot.child(firebaseUser.getUid()).exists()) {
-                    imageView.setImageResource(R.drawable.ic_liked);
-                    imageView.setTag("liked");
+                if (dataSnapshot.child(postId).exists()) {
+                    image.setImageResource(R.drawable.ic_like);
+                    image.setTag("saved");
                 } else {
-                    imageView.setImageResource(R.drawable.ic_like);
-                    imageView.setTag("like");
+                    image.setImageResource(R.drawable.ic_liked);
+                    image.setTag("save");
                 }
             }
 
@@ -260,6 +240,26 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.Viewholder> {
             }
         });
     }
+
+//    private void isLiked(String postId, final ImageView imageView) {
+//        FirebaseDatabase.getInstance().getReference().child("Likes").child(postId).addValueEventListener(new ValueEventListener() {
+//            @Override
+//            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+//                if (dataSnapshot.child(firebaseUser.getUid()).exists()) {
+//                    imageView.setImageResource(R.drawable.ic_liked);
+//                    imageView.setTag("liked");
+//                } else {
+//                    imageView.setImageResource(R.drawable.ic_like);
+//                    imageView.setTag("like");
+//                }
+//            }
+//
+//            @Override
+//            public void onCancelled(@NonNull DatabaseError databaseError) {
+//
+//            }
+//        });
+//    }
 
 //    private void noOfLikes (String postId, TextView text) {
 //        FirebaseDatabase.getInstance().getReference().child("Likes").child(postId).addValueEventListener(new ValueEventListener() {

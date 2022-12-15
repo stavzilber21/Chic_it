@@ -125,9 +125,9 @@ public class PostActivity extends AppCompatActivity {
                     Toast.makeText(PostActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
                 }
             });
-    } else {
-        Toast.makeText(this, "No image was selected!", Toast.LENGTH_SHORT).show();
-    }
+        } else {
+            Toast.makeText(this, "No image was selected!", Toast.LENGTH_SHORT).show();
+        }
 
     }
     private void selectImage() {

@@ -9,4 +9,5 @@
     <color name="white">#FFFFFFFF</color>
     <color name="colorAccent">#FF4081</color>
     <color name="colorPrimary">#455cde</color>
+    <color name="colorPrimaryDark">#000d3d</color>
 </resources>
