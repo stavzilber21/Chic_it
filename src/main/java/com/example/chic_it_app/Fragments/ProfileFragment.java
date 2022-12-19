@@ -343,7 +343,7 @@ public class ProfileFragment extends Fragment {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 User user = dataSnapshot.getValue(User.class);
-
+                //to download picture
                 Picasso.get().load(user.getImageurl()).into(imageProfile);
                 username.setText(user.getUsername());
                 fullname.setText(user.getName());

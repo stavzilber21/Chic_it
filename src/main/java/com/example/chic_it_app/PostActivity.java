@@ -63,6 +63,7 @@ public class PostActivity extends AppCompatActivity {
         imageAdded.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                //to select picture to post
                 selectImage();
             }
         });
@@ -82,7 +83,7 @@ public class PostActivity extends AppCompatActivity {
         progressDialog.setMessage("Uploading");
         progressDialog.show();
 
-
+//if the uri of the picture is null
         if (imageUri != null){
             storageReference = FirebaseStorage.getInstance().getReference("Posts").child(System.currentTimeMillis() + "." + getFileExtension(imageUri));
             StorageTask uploadtask = storageReference.putFile(imageUri);

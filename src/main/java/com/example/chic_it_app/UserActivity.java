@@ -30,14 +30,15 @@ public class UserActivity extends AppCompatActivity {
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
 
                 switch (menuItem.getItemId()){
+                    //if you to see all the posts in app
                     case R.id.nav_home :
                         selectorFragment = new HomeFragment();
                         break;
-
+                    //if you want to search posts by description
                     case R.id.nav_search :
                         selectorFragment = new SearchFragment();
                         break;
-
+                    //to see your profile
                     case R.id.nav_profile :
                         selectorFragment = new ProfileFragment();
                         break;

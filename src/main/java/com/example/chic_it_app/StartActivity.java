@@ -21,6 +21,7 @@ public class StartActivity extends AppCompatActivity {
         super.onStart();
 
         firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+        //if the user already exist in firebase
         if (FirebaseAuth.getInstance().getCurrentUser() != null){
             startActivity(new Intent(StartActivity.this , MainActivity.class));
             finish();
@@ -31,7 +32,7 @@ public class StartActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_start);
-
+        //to connect the buttons to xml file
         login = findViewById(R.id.login);
         register = findViewById(R.id.register);
 

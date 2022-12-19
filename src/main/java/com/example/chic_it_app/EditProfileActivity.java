@@ -4,10 +4,12 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -92,13 +94,13 @@ public class EditProfileActivity extends AppCompatActivity {
             }
         });
 
+        //to change my profile picture
         changePhoto.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent();
-                intent.setType("image/*");
-                intent.setAction(Intent.ACTION_GET_CONTENT);
-                startActivityForResult(intent,100);
+                //select image from gallery
+                Intent openGalleryIntent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                startActivityForResult(openGalleryIntent ,1000);
             }
         });
 
@@ -128,6 +130,7 @@ public class EditProfileActivity extends AppCompatActivity {
     }
 
     private void uploadImage() {
+        //Upload image to firebase storage
         final ProgressDialog pd = new ProgressDialog(this);
         pd.setMessage("Uploading");
         pd.show();
@@ -167,6 +170,16 @@ public class EditProfileActivity extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
+        if(requestCode == 1000){
+            if(resultCode == Activity.RESULT_OK){
+                mImageUri = data.getData();
+                imageProfile.setImageURI(mImageUri);
+                uploadImage();
+            }
+        }
+        else {
+            Toast.makeText(this, "Something went wrong!", Toast.LENGTH_SHORT).show();
+        }
 
 //        if (requestCode == CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE && resultCode == RESULT_OK) {
 //            CropImage.ActivityResult result = CropImage.getActivityResult(data);

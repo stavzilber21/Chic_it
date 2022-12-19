@@ -48,6 +48,7 @@ public class RegisterActivity extends AppCompatActivity {
         txt_login = findViewById(R.id.txt_login);
 
         auth = FirebaseAuth.getInstance();
+        //if I already register to application
         txt_login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -55,10 +56,12 @@ public class RegisterActivity extends AppCompatActivity {
             }
         });
 
+        //after you fill the details
         register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 pd = new ProgressDialog(RegisterActivity.this);
+                //to display the progress of an action that is loading.
                 pd.setMessage("Please wait...");
                 pd.show();
 
@@ -81,6 +84,7 @@ public class RegisterActivity extends AppCompatActivity {
 
     }
 
+    //connect to details of user to firebase
     private void register(final String username, final String fullname, String email, String password) {
         auth.createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener(RegisterActivity.this, new OnCompleteListener<AuthResult>() {
@@ -89,16 +93,16 @@ public class RegisterActivity extends AppCompatActivity {
                         if (task.isSuccessful()) {
                             FirebaseUser firebaseUser = auth.getCurrentUser();
                             String userid = firebaseUser.getUid();
-
+                            // to create sub tree in firebase ti Users
                             reference = FirebaseDatabase.getInstance().getReference().child("Users").child(userid);
 
                             HashMap<String, Object> hashMap = new HashMap<>();
                             hashMap.put("id", userid);
                             hashMap.put("username", username.toLowerCase());
                             hashMap.put("fullname", fullname);
-                            hashMap.put("bio", "");
+//                            hashMap.put("bio", "");
                             hashMap.put("imageurl","https://firebasestorage.googleapis.com/v0/b/chicit-a5e00.appspot.com/o/placeholder.png?alt=media&token=e355a742-f8f6-4ca6-b4d4-734dfb6091a3");
-
+                            //to enter the fields of User to tree in the firebase
                             reference.setValue(hashMap).addOnCompleteListener(new OnCompleteListener<Void>() {
                                 @Override
                                 public void onComplete(@NonNull Task<Void> task) {
