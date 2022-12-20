@@ -55,6 +55,8 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.Viewholder> {
         final Post post = mPosts.get(position);
         Picasso.get().load(post.getImageurl()).into(holder.postImage);
         holder.description.setText(post.getDescription());
+        holder.price.setText(post.getPrice());
+        holder.store.setText(post.getStore());
 
         FirebaseDatabase.getInstance().getReference().child("Users").child(post.getDescription()).addValueEventListener(new ValueEventListener() {
             @Override
@@ -191,7 +193,7 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.Viewholder> {
 
         //        public ImageView imageProfile;
         public ImageView postImage;
-//        public ImageView like;
+        //        public ImageView like;
         public ImageView save;
 //        public ImageView comment;
 //        public ImageView more;
@@ -201,6 +203,9 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.Viewholder> {
         public TextView author;
         //        public TextView noOfComments;
         TextView description;
+        TextView price;
+        TextView store;
+
 
         public Viewholder(@NonNull View itemView) {
             super(itemView);
@@ -217,6 +222,8 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.Viewholder> {
             author = itemView.findViewById(R.id.author);
 //            noOfComments = itemView.findViewById(R.id.no_of_comments);
             description = itemView.findViewById(R.id.description);
+            store = itemView.findViewById(R.id.store);
+            price = itemView.findViewById(R.id.price);
 
         }
     }
@@ -226,10 +233,10 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.Viewholder> {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 if (dataSnapshot.child(postId).exists()) {
-                    image.setImageResource(R.drawable.ic_like);
+                    image.setImageResource(R.drawable.ic_liked);
                     image.setTag("saved");
                 } else {
-                    image.setImageResource(R.drawable.ic_liked);
+                    image.setImageResource(R.drawable.ic_like);
                     image.setTag("save");
                 }
             }
