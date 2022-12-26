@@ -48,12 +48,12 @@ public class ProfileFragment extends Fragment {
     private List<Post> myPhotoList;
 
     private CircleImageView imageProfile;
-//    private ImageView options;
+    //    private ImageView options;
 //    private TextView followers;
 //    private TextView following;
     private TextView posts;
     private TextView fullname;
-//    private TextView bio;
+    //    private TextView bio;
     private TextView username;
 
     private ImageView myPictures;
@@ -343,10 +343,10 @@ public class ProfileFragment extends Fragment {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 User user = dataSnapshot.getValue(User.class);
-                //to download picture
+
                 Picasso.get().load(user.getImageurl()).into(imageProfile);
                 username.setText(user.getUsername());
-                fullname.setText(user.getName());
+                fullname.setText(user.getFullname());
 //                bio.setText(user.getBio());
             }
 

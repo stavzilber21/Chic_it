@@ -28,7 +28,6 @@ import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.StorageTask;
-import com.rengwuxian.materialedittext.MaterialEditText;
 import com.example.chic_it_app.Model.User;
 import com.squareup.picasso.Picasso;
 //import com.theartofdev.edmodo.cropper.CropImage;
@@ -75,7 +74,8 @@ public class EditProfileActivity extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 User user = dataSnapshot.getValue(User.class);
-                fullname.setText(user.getName());
+                fullname.setText(user.getFullname());
+//                Toast.makeText(EditProfileActivity.this, user.getName(), Toast.LENGTH_SHORT).show();
                 username.setText(user.getUsername());
 //                bio.setText(user.getBio());
                 Picasso.get().load(user.getImageurl()).into(imageProfile);
@@ -101,12 +101,16 @@ public class EditProfileActivity extends AppCompatActivity {
                 //select image from gallery
                 Intent openGalleryIntent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
                 startActivityForResult(openGalleryIntent ,1000);
+
             }
         });
 
         imageProfile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+//                imageProfile.setGridInnerMode(ImageCropView.GRID_ON);
+//                imageProfile.setGridOuterMode(ImageCropView.GRID_ON);
+//                ImageCropView.
 //                CropImage.activity().setCropShape(CropImageView.CropShape.OVAL).start(EditProfileActivity.this);
             }
         });
@@ -170,6 +174,7 @@ public class EditProfileActivity extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
+
         if(requestCode == 1000){
             if(resultCode == Activity.RESULT_OK){
                 mImageUri = data.getData();
@@ -180,14 +185,5 @@ public class EditProfileActivity extends AppCompatActivity {
         else {
             Toast.makeText(this, "Something went wrong!", Toast.LENGTH_SHORT).show();
         }
-
-//        if (requestCode == CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE && resultCode == RESULT_OK) {
-//            CropImage.ActivityResult result = CropImage.getActivityResult(data);
-//            mImageUri = result.getUri();
-//
-//            uploadImage();
-//        } else {
-//            Toast.makeText(this, "Something went wrong!", Toast.LENGTH_SHORT).show();
-//        }
     }
 }

@@ -61,13 +61,13 @@ public class HomeFragment extends Fragment {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 //                if (TextUtils.isEmpty(search_bar.getText().toString())){
-                    mPosts.clear();
-                    for (DataSnapshot snapshot : dataSnapshot.getChildren()){
-                        Post post = snapshot.getValue(Post.class);
-                        mPosts.add(post);
-                    }
+                mPosts.clear();
+                for (DataSnapshot snapshot : dataSnapshot.getChildren()){
+                    Post post = snapshot.getValue(Post.class);
+                    mPosts.add(post);
+                }
 
-                    postAdapter.notifyDataSetChanged();
+                postAdapter.notifyDataSetChanged();
 //                }
             }
 

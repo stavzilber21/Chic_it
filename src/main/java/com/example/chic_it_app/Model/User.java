@@ -4,10 +4,10 @@ package com.example.chic_it_app.Model;
 
 public class User {
 
-    private String name;
+    private String fullname;
     private String email;
     private String username;
-//    private String bio;
+    //    private String bio;
     private String imageurl;
     private String id;
 
@@ -15,7 +15,7 @@ public class User {
     }
 
     public User(String name, String email, String username, String bio, String imageurl, String id) {
-        this.name = name;
+        this.fullname = name;
         this.email = email;
         this.username = username;
 //        this.bio = bio;
@@ -23,12 +23,12 @@ public class User {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getFullname() {
+        return fullname;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setFullname(String fullname) {
+        this.fullname = fullname;
     }
 
     public String getEmail() {

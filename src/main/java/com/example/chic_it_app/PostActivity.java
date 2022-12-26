@@ -83,7 +83,7 @@ public class PostActivity extends AppCompatActivity {
         progressDialog.setMessage("Uploading");
         progressDialog.show();
 
-//if the uri of the picture is null
+        //if the uri of the picture is null
         if (imageUri != null){
             storageReference = FirebaseStorage.getInstance().getReference("Posts").child(System.currentTimeMillis() + "." + getFileExtension(imageUri));
             StorageTask uploadtask = storageReference.putFile(imageUri);

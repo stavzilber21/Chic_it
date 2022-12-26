@@ -30,13 +30,13 @@ public class CreatingcontentActivity extends AppCompatActivity {
 
                 switch (menuItem.getItemId()){
 
-                // if you what to upload a new post
+                    // if you what to upload a new post
                     case R.id.nav_add :
                         selectorFragment = null;
                         startActivity(new Intent(CreatingcontentActivity.this , PostActivity.class));
                         break;
 
-                // if you want to see your profile
+                    // if you want to see your profile
                     case R.id.nav_profile :
                         selectorFragment = new ProfileFragment();
                         break;

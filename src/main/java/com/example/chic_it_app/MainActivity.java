@@ -14,10 +14,10 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        //to connect the buttoms to xml file
+
         user = (Button) findViewById(R.id.user);
         creating_content = (Button) findViewById(R.id.creating_content);
-
+        //to connect the buttoms to xml file
         user.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

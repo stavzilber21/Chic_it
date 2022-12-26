@@ -61,7 +61,7 @@
             <ImageView
                 android:layout_width="30dp"
                 android:layout_height="30dp"
-                android:src="@drawable/ic_liked"
+                android:src="@drawable/ic_like"
                 android:id="@+id/save"/>
 
             <!--            <ImageView-->
@@ -104,6 +104,24 @@
             android:layout_marginBottom="5dp"
             android:textColor="@color/colorAccent"
             android:id="@+id/description"/>
+
+        <TextView
+            android:id="@+id/price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
+            android:textColor="@color/colorAccent" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
+            android:textColor="@color/colorAccent"
+            android:id="@+id/store"/>
 
         <!--        <TextView-->
         <!--            android:layout_width="wrap_content"-->

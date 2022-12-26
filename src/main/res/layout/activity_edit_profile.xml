@@ -38,7 +38,6 @@
                     android:layout_marginStart="10dp"
                     android:layout_toEndOf="@id/close"
                     android:text="Edit Profile"
-                    android:textColor="@color/colorPrimaryDark"
                     android:textSize="18sp" />
 
                 <TextView
@@ -49,7 +48,6 @@
                     android:layout_centerVertical="true"
                     android:layout_marginRight="10dp"
                     android:text="SAVE"
-                    android:textColor="@color/colorPrimaryDark"
                     android:textSize="18sp" />
 
             </RelativeLayout>
